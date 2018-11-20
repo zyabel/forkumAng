@@ -1,0 +1,20 @@
+@import '../../../assets/common/variables.scss';
+
+nav {
+
+  .nav-link {
+    padding: 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    &:hover {
+      border-bottom: 2px solid $orange-color-bg;  
+      color: $dark-color-bg;
+    }
+  }
+}
+
+.isActive {
+  border-bottom: 2px solid $orange-color-bg;
+  color: $dark-color-bg;
+}

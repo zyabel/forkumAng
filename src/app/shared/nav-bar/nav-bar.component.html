@@ -1,0 +1,14 @@
+<div class="container">
+  <nav>
+    <ul class="nav nav-tabs nav-justified">
+      <li *ngFor="let link of links" class="nav-item">
+        <a 
+          [routerLink]="['/' + link.path]" 
+          routerLinkActive="isActive" 
+          [routerLinkActiveOptions]="{ exact: false }" 
+          class="nav-link"
+        >{{link.title}}</a>
+      </li>
+    </ul>
+  </nav>
+</div>
