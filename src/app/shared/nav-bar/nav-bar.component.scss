@@ -14,7 +14,7 @@ nav {
   }
 }
 
-.isActive {
+.nav-link.active {
   border-bottom: 2px solid $orange-color-bg;
   color: $dark-color-bg;
 }

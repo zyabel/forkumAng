@@ -4,7 +4,7 @@
       <li *ngFor="let link of links" class="nav-item">
         <a 
           [routerLink]="['/' + link.path]" 
-          routerLinkActive="isActive" 
+          routerLinkActive="active" 
           [routerLinkActiveOptions]="{ exact: false }" 
           class="nav-link"
         >{{link.title}}</a>

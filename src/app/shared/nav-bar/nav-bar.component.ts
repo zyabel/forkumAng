@@ -13,23 +13,23 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
     this.links = [
       {
-        path: '',
+        path: 'home',
         title: 'Home'
       },
       {
-        path: '/services',
+        path: 'services',
         title: 'Services'
       },
       {
-        path: '/products',
+        path: 'products',
         title: 'Products'
       },
       {
-        path: '/faq',
+        path: 'faq',
         title: 'Faq'
       },
       {
-        path: '/contacts',
+        path: 'contacts',
         title: 'Contacts'
       }
     ];
