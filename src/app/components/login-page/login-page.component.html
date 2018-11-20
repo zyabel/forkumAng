@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-9 mx-auto mt-5">
+    <div class="card text-center">
+      <div class="card-header">
+        LOGIN PANEL
+      </div>
+      <div class="card-body">
+        <form class="form-inline" novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-2">
+            <label for="staticEmail2" class="sr-only">Email</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="email"
+              name="email"
+              id="staticEmail2" 
+              placeholder="Email"
+              required
+            >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <label for="inputPassword2" class="sr-only">Password</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              [(ngModel)]="pass"
+              name="pass"
+              id="inputPassword2" 
+              placeholder="Password"
+              required
+            >
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" [disabled]="form.invalid">Confirm identity</button>
+        </form>
+      </div>
+      <div class="card-footer text-muted">
+        admin@gmail.com adminXXX
+      </div>
+    </div>
+    <div class="alert alert-succes login" role="alert" *ngIf="isShowSuccess">
+      SingIn success!
+    </div>
+    <div class="alert alert-danger login" role="alert" *ngIf="isShowError">
+      Fill form please!
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +9,11 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   links: {}[];
-  constructor(private router: Router) { }
+
+  isLogin: boolean = false;
+
+  constructor(private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.links = [
@@ -33,5 +38,19 @@ export class NavBarComponent implements OnInit {
         title: 'Contacts'
       }
     ];
+
+    this.auth.checkAuth()
+      .subscribe( auth => {
+        if (auth) {
+          this.isLogin = true;
+        } else {
+          this.isLogin = false;
+        }
+      });
+  }
+
+
+  logOut(): void {
+    this.auth.logOut();
   }
 }

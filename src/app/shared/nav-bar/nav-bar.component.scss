@@ -8,13 +8,13 @@ nav {
     text-transform: uppercase;
 
     &:hover {
-      border-bottom: 2px solid $orange-color-bg;  
+      border-top: 2px solid $orange-color-bg;  
       color: $dark-color-bg;
     }
   }
 }
 
 .nav-link.active {
-  border-bottom: 2px solid $orange-color-bg;
+  border-top: 2px solid $orange-color-bg;
   color: $dark-color-bg;
 }
