@@ -1,6 +1,21 @@
 <div class="container">
+  <div class="login">
+    <button class="btn btn-link" *ngIf="isLogin" (click)="logOut()">LogOut</button>
+    <a routerLink="/login" class="btn btn-link" *ngIf="!isLogin">Login</a>
+  </div>
   <nav>
-    <ul class="nav nav-tabs nav-justified">
+    <ul class="nav nav-tabs nav-justified" *ngIf="!isLogin">
+      <li *ngFor="let link of links" class="nav-item">
+        <a 
+          [routerLink]="['/' + link.path]" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{ exact: false }" 
+          class="nav-link"
+        >{{link.title}}</a>
+      </li>
+    </ul>
+
+    <ul class="nav nav-tabs nav-justified" *ngIf="isLogin">
       <li *ngFor="let link of links" class="nav-item">
         <a 
           [routerLink]="['/' + link.path]" 

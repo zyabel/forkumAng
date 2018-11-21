@@ -26,6 +26,10 @@ const routes: Routes = [
     loadChildren: './components/services-page/services-page.module#ServicesPageModule'
   },
   {
+    path: 'login',
+    loadChildren: './components/login-page/login-page.module#LoginPageModule'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent }
 ];
