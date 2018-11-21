@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
@@ -9,11 +9,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
+  @ViewChild('form') form;
   email: string;
 
   pass: string;
 
-  isShowSuccess: boolean = false;
   isShowError: boolean = false;
 
   constructor(private auth: AuthService,
@@ -28,10 +28,13 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      this.isShowError = true;
+    }
+
     this.auth.login(this.email, this.pass)
       .then(user => {
         this.router.navigate(['/home']);
-        this.isShowSuccess = true;
       })
       .catch(err => this.isShowError = true);
   }
