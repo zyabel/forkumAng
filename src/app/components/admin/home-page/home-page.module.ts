@@ -3,19 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { HomePageComponent } from './home-page.component';
 import { HomePageRoutingModule } from './home-page-routins.module';
-import { SpinnerComponent } from '../../shared';
-
-import { CarouselModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
-    HomePageComponent,
-    SpinnerComponent
+    HomePageComponent
   ],
   imports: [
     CommonModule,
-    HomePageRoutingModule,
-    CarouselModule.forRoot()
+    HomePageRoutingModule
   ],
   exports: [
     HomePageComponent

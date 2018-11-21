@@ -1,6 +1,8 @@
 <div class="container">
   <div class="login">
-    <button class="btn btn-link" *ngIf="isLogin" (click)="logOut()">LogOut</button>
+    <button class="btn btn-link" *ngIf="isLogin" (click)="logOut()">Logout
+      <span> {{admin}}</span>
+    </button>
     <a routerLink="/login" class="btn btn-link" *ngIf="!isLogin">Login</a>
   </div>
   <nav>
@@ -16,13 +18,13 @@
     </ul>
 
     <ul class="nav nav-tabs nav-justified" *ngIf="isLogin">
-      <li *ngFor="let link of links" class="nav-item">
+      <li *ngFor="let link of linksAdmin" class="nav-item">
         <a 
           [routerLink]="['/' + link.path]" 
           routerLinkActive="active" 
           [routerLinkActiveOptions]="{ exact: false }" 
           class="nav-link"
-        >{{link.title}}</a>
+        >{{link.title}}/admin</a>
       </li>
     </ul>
   </nav>

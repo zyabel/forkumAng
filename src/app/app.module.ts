@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarModule } from './shared';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AuthService } from './services/auth.service';
+import { AuthService, DataServiceService } from './services';
 import { environment } from '../environments/environment';
 
 import { AngularFireModule } from 'angularfire2';
@@ -17,7 +17,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +30,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     AngularFireAuthModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    DataServiceService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

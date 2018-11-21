@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -30,12 +31,41 @@ const routes: Routes = [
     loadChildren: './components/login-page/login-page.module#LoginPageModule'
   },
   {
+    path: 'home/admin',
+    loadChildren: './components/admin/home-page/home-page.module#HomePageModule',
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'contacts/admin',
+    loadChildren: './components/admin/contacts-page/contacts-page.module#ContactsPageModule',
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'faq/admin',
+    loadChildren: './components/admin/faq-page/faq-page.module#FaqPageModule',
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'products/admin',
+    loadChildren: './components/admin/product-page/product-page.module#ProductPageModule',
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'services/admin',
+    loadChildren: './components/admin/services-page/services-page.module#ServicesPageModule',
+    canActivate: [ AuthGuard ]
+  },
+  {
     path: '**',
-    component: PageNotFoundComponent }
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AuthGuard
+  ]
 })
 export class AppRoutingModule { }
