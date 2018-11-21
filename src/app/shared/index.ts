@@ -1,2 +1,2 @@
 export * from './nav-bar/nav-bar.module';
-export * from './spinner/spinner.component';
+export * from './spinner/spinner.module';

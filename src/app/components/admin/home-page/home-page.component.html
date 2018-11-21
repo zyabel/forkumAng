@@ -1,3 +1,23 @@
-<p>
-  home-page works!
-</p>
+<div class="container">
+  <section>
+    <div class="panel" *ngIf="!isLoading">
+      <div class="panel">
+        <button class="btn btn-danger m-3" (click)="addNews()">ADD</button>
+      </div>
+      <div class="card mb-5 mt-5 border-dark" *ngFor="let news of newsArray; trackBy: trackByFn" >
+        <h5 class="card-header border-dark">{{news.title}}</h5>
+        <div class="card-body" >
+          <p class="card-text ">{{news.text}}</p>          
+        </div>
+        <div class="card-footer text-muted border-dark">{{news.data.toDate() | date:'dd/MM/yyyy'}}</div>
+        <div class="panel">
+          <button class="btn btn-danger m-3" (click)="deleteNews(news.id)">Delete</button>
+          <a routerLink='/news/{{news.id}}' class="btn btn-info m-3" (click)="editNews(news.id)">Edit</a>
+        </div>
+      </div>
+    </div>
+    <div class="panel mb-2" *ngIf="isLoading">
+      <app-spinner></app-spinner>
+    </div>
+  </section>
+</div>

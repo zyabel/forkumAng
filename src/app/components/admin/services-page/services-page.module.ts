@@ -16,4 +16,4 @@ import { ServicesPageRoutingModule } from './services-page.routing.module';
     ServicesPageComponent
   ]
 })
-export class ServicesPageModule { }
+export class AdminServicesPageModule { }

@@ -16,4 +16,4 @@ import { ContactsPageRoutingModule } from './contacts-page-routing.module';
     ContactsPageComponent
   ]
 })
-export class ContactsPageModule { }
+export class AdminContactsPageModule { }

@@ -32,27 +32,27 @@ const routes: Routes = [
   },
   {
     path: 'home/admin',
-    loadChildren: './components/admin/home-page/home-page.module#HomePageModule',
+    loadChildren: './components/admin/home-page/home-page.module#AdminHomePageModule',
     canActivate: [ AuthGuard ]
   },
   {
     path: 'contacts/admin',
-    loadChildren: './components/admin/contacts-page/contacts-page.module#ContactsPageModule',
+    loadChildren: './components/admin/contacts-page/contacts-page.module#AdminContactsPageModule',
     canActivate: [ AuthGuard ]
   },
   {
     path: 'faq/admin',
-    loadChildren: './components/admin/faq-page/faq-page.module#FaqPageModule',
+    loadChildren: './components/admin/faq-page/faq-page.module#AdminFaqPageModule',
     canActivate: [ AuthGuard ]
   },
   {
     path: 'products/admin',
-    loadChildren: './components/admin/product-page/product-page.module#ProductPageModule',
+    loadChildren: './components/admin/product-page/product-page.module#AdminProductPageModule',
     canActivate: [ AuthGuard ]
   },
   {
     path: 'services/admin',
-    loadChildren: './components/admin/services-page/services-page.module#ServicesPageModule',
+    loadChildren: './components/admin/services-page/services-page.module#AdminServicesPageModule',
     canActivate: [ AuthGuard ]
   },
   {

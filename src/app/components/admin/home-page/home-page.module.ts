@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomePageComponent } from './home-page.component';
+import { AdminHomePageComponent } from './home-page.component';
 import { HomePageRoutingModule } from './home-page-routins.module';
+import { SpinnerModule } from '../../../shared';
 
 @NgModule({
   declarations: [
-    HomePageComponent
+    AdminHomePageComponent
   ],
   imports: [
     CommonModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SpinnerModule
   ],
   exports: [
-    HomePageComponent
+    AdminHomePageComponent
   ]
 })
-export class HomePageModule { }
+export class AdminHomePageModule { }

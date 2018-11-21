@@ -1,10 +1,10 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import { HomePageComponent } from './home-page.component';
+import { AdminHomePageComponent } from './home-page.component';
 
 const routes: Routes = [{
   path: '',
-  component: HomePageComponent
+  component: AdminHomePageComponent
 }];
 export const HomePageRoutingModule: ModuleWithProviders = RouterModule.forChild(routes);

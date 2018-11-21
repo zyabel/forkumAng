@@ -14,4 +14,4 @@ import { FaqPageRoutingModule } from './faq-page-routing.module';
     FaqPageComponent
   ]
 })
-export class FaqPageModule { }
+export class AdminFaqPageModule { }

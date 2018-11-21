@@ -16,4 +16,4 @@ import { ProductPageRoutingModule } from './product-page.routing.module';
     ProductPageComponent
   ]
 })
-export class ProductPageModule { }
+export class AdminProductPageModule { }

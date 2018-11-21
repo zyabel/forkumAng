@@ -13,7 +13,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, pass);
   }
 
-  checkAuth(): Observable<{}>  {
+  checkAuth()  {
     return this.afAuth.authState;
   }
 
