@@ -29,7 +29,7 @@
         <div class="card-body" >
           <p class="card-text ">{{news.text}}</p>          
         </div>
-        <div class="card-footer text-muted border-dark">{{news.data.toDate() | date:'dd/MM/yyyy'}}</div>
+        <div class="card-footer text-muted border-dark">{{news.data}}</div>
       </div>
     </div>
     <div class="panel mb-2" *ngIf="isLoading">

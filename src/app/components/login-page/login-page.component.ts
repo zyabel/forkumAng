@@ -16,13 +16,15 @@ export class LoginPageComponent implements OnInit {
 
   isShowError: boolean = false;
 
+  isShowErrorLogin: boolean = false;
+
   constructor(private auth: AuthService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.auth.checkAuth().subscribe(auth => {
       if (auth) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/messages/admin']);
       }
     });
   }
@@ -34,8 +36,8 @@ export class LoginPageComponent implements OnInit {
 
     this.auth.login(this.email, this.pass)
       .then(user => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/messages/admin']);
       })
-      .catch(err => this.isShowError = true);
+      .catch(err => this.isShowErrorLogin = true);
   }
 }

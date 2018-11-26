@@ -45,6 +45,10 @@ export class NavBarComponent implements OnInit {
 
     this.linksAdmin = [
       {
+        path: 'messages/admin',
+        title: 'Messages'
+      },
+      {
         path: 'home/admin',
         title: 'Home'
       },

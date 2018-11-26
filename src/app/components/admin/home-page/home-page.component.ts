@@ -10,15 +10,15 @@ import { News } from '../../../interfaces/news.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminHomePageComponent implements OnInit {
-  newsArray: {}[];
+  newsArray: News[];
 
   isLoading: boolean = true;
 
-  news = {
-    title: 'news',
-    text: 'test text',
-    data: new Date()
-  };
+  newsNew: News;
+
+  news: News;
+
+  isEdit: boolean = false;
 
   constructor(private dataService: DataServiceService,
               private cd: ChangeDetectorRef) { }
@@ -32,20 +32,51 @@ export class AdminHomePageComponent implements OnInit {
       });
   }
 
-  addNews(): void {
-    this.dataService.addBook(this.news);
+  addNews(title: string, text: string, data): void {
+    this.newsNew = {
+      title: title,
+      text: text,
+      data: data
+    };
+
+    this.dataService.addBook(this.newsNew);
+    this.cd.markForCheck();
   }
 
-  editNews(id: string) {
-    console.log(id);
+  editNews(id: string): void {
+    if (this.news === undefined) {
+      this.news = {
+        title: '',
+        text: '',
+        data: ''
+      };
+    }
+
+    this.dataService.getNewsById(id)
+      .subscribe((data: News) => {
+        this.news = data;
+        this.news.id = id;
+
+        this.cd.detectChanges();
+      });
+    this.isEdit = true;
+  }
+
+  confirmEditNews(title: string, text: string, data: string) {
+    const updateNews = Object.assign( {}, this.news);
+    this.dataService.editNews(updateNews);
+    this.isEdit = false;
   }
 
   deleteNews(id: string): void {
-    this.dataService.deleteBook(id);
+    this.dataService.deleteNews(id);
   }
 
   trackByFn(index, item) {
     return index;
   }
 
+  cancelNews(): void {
+    this.isEdit = false;
+  }
 }

@@ -56,6 +56,11 @@ const routes: Routes = [
     canActivate: [ AuthGuard ]
   },
   {
+    path: 'messages/admin',
+    loadChildren: './components/admin/messages-page/messages-page.module#AdminMessagesPageModule',
+    canActivate: [ AuthGuard ]
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

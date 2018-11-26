@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
+
+import { News } from '../interfaces/news.interface';
+
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { DocumentReference } from '@firebase/firestore-types';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataServiceService {
-  // TODO: create interfaces for news
-  newsCollection: AngularFirestoreCollection<any>;
+
+  newsCollection: AngularFirestoreCollection<News>;
 
   constructor(private afs: AngularFirestore) {
     this.newsCollection = this.afs.collection('news');
    }
 
-  getNewsData() {
+  getNewsData(): Observable<News[]> {
     const dataNews = this.newsCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data();
@@ -26,20 +31,19 @@ export class DataServiceService {
     return dataNews;
   }
 
-  getBookById(id: string) {
+  getNewsById(id: string): Observable<{}> {
     return this.newsCollection.doc(id).valueChanges();
   }
 
-  addBook(news) {
+  addBook(news: News): Promise<DocumentReference> {
     return this.newsCollection.add(news);
   }
 
-  // editBook(book) {
-  //   return of(book);
-  // }
+  editNews(news: News): void {
+    this.newsCollection.doc(news.id).update(news);
+  }
 
-  deleteBook(id: string) {
-    const news = this.newsCollection.doc(id);
-    news.delete();
+  deleteNews(id: string): void {
+    this.newsCollection.doc(id).delete();
   }
 }

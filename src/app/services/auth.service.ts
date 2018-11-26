@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth,
+              private router: Router) { }
 
   login(email: string, pass: string): Promise<{}> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, pass);
@@ -19,5 +21,6 @@ export class AuthService {
 
   logOut(): void {
     this.afAuth.auth.signOut();
+    this.router.navigate(['/home']);
   }
 }
