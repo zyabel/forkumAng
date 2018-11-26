@@ -6,3 +6,10 @@ export interface News {
   text: string;
   data: string;
 }
+export interface Message {
+  name: string;
+  email: string;
+  phone: number;
+  message: string;
+  data: Date;
+}

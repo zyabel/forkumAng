@@ -39,7 +39,7 @@ export class AdminHomePageComponent implements OnInit {
       data: data
     };
 
-    this.dataService.addBook(this.newsNew);
+    this.dataService.addNews(this.newsNew);
     this.cd.markForCheck();
   }
 
