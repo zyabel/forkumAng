@@ -13,3 +13,13 @@ export interface Message {
   message: string;
   data: Date;
 }
+
+export interface PersonalInfo {
+  phone: {
+    base: string;
+    optional: string;
+  };
+  adress: string;
+  email: string;
+  id?: string;
+}

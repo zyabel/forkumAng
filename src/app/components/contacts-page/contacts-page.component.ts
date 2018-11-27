@@ -1,17 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormsModule,
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Message } from '../../interfaces/news.interface';
+import { Message, PersonalInfo } from '../../interfaces/news.interface';
 import { DataServiceService } from '../../services';
 
-import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
+import { icon, latLng, marker, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-contacts-page',
@@ -19,6 +12,15 @@ import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
   styleUrls: ['./contacts-page.component.scss']
 })
 export class ContactsPageComponent implements OnInit {
+  personalInfo = {
+    phone: {
+      base: '',
+      optional: ''
+    },
+    adress: '',
+    email: ''
+  };
+
   formMessage: FormGroup;
   name: FormControl;
   email: FormControl;
@@ -55,11 +57,22 @@ export class ContactsPageComponent implements OnInit {
 
   ngOnInit() {
     this.formMessage = new FormGroup({
-      name: new FormControl(),
-      email: new FormControl(),
-      phone: new FormControl(),
-      message: new FormControl(),
-   });
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[^ @]*@[^ @]*')
+      ]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+      ]),
+      message: new FormControl('', Validators.required),
+    });
+
+    this.dataService.getPersonalInfo().subscribe(info => {
+      this.personalInfo = info[0];
+      this.cd.detectChanges();
+    });
   }
 
   sendMessage() {
@@ -70,6 +83,7 @@ export class ContactsPageComponent implements OnInit {
       message: this.formMessage.value.message,
       data: new Date()
     };
+
     if (this.formMessage.valid) {
       this.dataService.addMessage(newMessage);
       this.isSuccessSend = true;
