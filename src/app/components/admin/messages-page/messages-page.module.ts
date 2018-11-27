@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MessagesPageComponent } from './messages-page.component';
 import { MessagesPageRoutingModule } from './messages-page.routing.module';
+import { SpinnerModule } from '../../../shared';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +12,8 @@ import { MessagesPageRoutingModule } from './messages-page.routing.module';
   ],
   imports: [
     CommonModule,
-    MessagesPageRoutingModule
+    MessagesPageRoutingModule,
+    SpinnerModule
   ],
   exports: [
     MessagesPageComponent

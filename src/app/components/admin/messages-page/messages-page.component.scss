@@ -1,0 +1,63 @@
+.container {
+  .card {
+    display: none;
+  }
+
+  .card-header, 
+  .card-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1.25em;
+    font-size: 16px;
+
+    button.btn, span {
+      margin: 5px;
+    }
+  }
+}
+
+.container {
+  table {
+    margin: 20px 0;
+
+    th {
+      padding: 5px;
+      vertical-align: middle;
+
+
+    }
+
+    th.button {
+      width: 60px;
+    }
+
+    th.name, 
+    th.email,    
+    th.data {
+      width: 150px;
+    }
+
+    th.phone {
+      width: 150px;
+    }
+
+    th.message {
+      width: 330px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1001px) {
+  .container .card {
+    display: block;
+
+    .card-body {
+      flex-direction: column;
+    }
+  }
+
+  table {
+    display: none;
+  }
+}

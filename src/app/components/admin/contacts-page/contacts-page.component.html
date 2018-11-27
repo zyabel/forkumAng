@@ -1,3 +1,46 @@
-<p>
-  Admin contacts-page works!
-</p>
+
+<div class="panel-spinner mb-2" *ngIf="isLoading">
+  <app-spinner></app-spinner>
+</div>
+<div class="alert alert-success" role="alert" *ngIf="isSuccess">
+  Info changed successful!
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="isDanger">
+    Info changed fail!
+</div>
+<div class="container" >
+  <div class="panel mt-3 edit" *ngIf="!isLoading">    
+    <form>          
+      <div class="form-group">
+        <h3>Please edit personal info:</h3>
+        <label >Phones</label>
+        <input type="tel" class="form-control" name="base"  [(ngModel)]="personalInfo.phone.base">
+        <input type="tel" class="form-control" name="optional"  [(ngModel)]="personalInfo.phone.optional">
+      </div>
+      <div class="form-group">
+        <label >Adress</label>
+        <input class="form-control" rows="3" name="adress" [(ngModel)]="personalInfo.adress">
+      </div>
+      <div class="form-group">
+        <label >Email</label>
+        <input type="email" class="form-control" rows="3" name="email" [(ngModel)]="personalInfo.email">
+      </div>
+      <div class="panel">
+        <button class="btn btn-success" (click)="confirmEditInfo()">Confirm chages</button>
+      </div>
+    </form>
+  </div>
+  <div class="panel mt-3 personal" *ngIf="!isLoading">
+    <h4>Current personal info:</h4>
+    <div class="panel">        
+      <p class="list-group-item">{{personalInfo.phone.base}}</p>
+      <p class="list-group-item">{{personalInfo.phone.optional}}</p>
+    </div>
+    <div class="panel"> 
+      <p class="list-group-item">{{personalInfo.adress}}</p>
+    </div>
+    <div class="panel">
+      <p class="list-group-item">{{personalInfo.email}}</p>
+    </div>
+  </div>
+</div>

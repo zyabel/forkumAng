@@ -1,3 +1,104 @@
-<p>
-  contacts-page works!
-</p>
+<div class="container">
+  <div class="info-wrap">
+    <div class="message-form">
+      <h4>Get in touch:</h4>
+      <form novalidate (ngSubmit)="sendMessage()" [formGroup]="formMessage">
+        <div class="form-group">
+          <input 
+            [ngClass]="{
+              'has-danger': formMessage.controls.name.invalid && (formMessage.controls.name.dirty || formMessage.controls.name.touched),
+              'has-success': formMessage.controls.name.valid && (formMessage.controls.name.dirty || formMessage.controls.name.touched)
+            }"
+            type="text" 
+            formControlName="name"               
+            class="form-control" 
+            placeholder="Your name" 
+            required
+          >
+          <div class="form-control-feedback"
+            *ngIf="formMessage.controls.name.errors && (formMessage.controls.name.dirty || formMessage.controls.name.touched)">
+            <p *ngIf="formMessage.controls.name.errors.required">Name is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input 
+            [ngClass]="{
+              'has-danger': formMessage.controls.email.invalid && (formMessage.controls.email.dirty || formMessage.controls.email.touched),
+              'has-success': formMessage.controls.email.valid && (formMessage.controls.email.dirty || formMessage.controls.email.touched)
+            }"
+            type="email" 
+            formControlName="email"               
+            class="form-control" 
+            placeholder="Your email" 
+
+            required>
+          <div class="form-control-feedback"
+            *ngIf="formMessage.controls.email.errors && (formMessage.controls.email.dirty || formMessage.controls.email.touched)">
+            <p *ngIf="formMessage.controls.email.errors.required">Email is required</p>
+            <p *ngIf="formMessage.controls.email.errors.pattern">The email address must contain at least the @ character</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input 
+            [ngClass]="{
+              'has-danger': formMessage.controls.phone.invalid && (formMessage.controls.phone.dirty || formMessage.controls.phone.touched),
+              'has-success': formMessage.controls.phone.valid && (formMessage.controls.phone.dirty || formMessage.controls.phone.touched)
+            }"
+            type="tel" 
+            formControlName="phone"               
+            class="form-control" 
+            placeholder="Your phone number" 
+
+            required>
+          <div class="form-control-feedback"
+            *ngIf="formMessage.controls.phone.errors && (formMessage.controls.phone.dirty || formMessage.controls.phone.touched)">
+            <p *ngIf="formMessage.controls.phone.errors.required">Phone is required</p>
+            <p *ngIf="formMessage.controls.email.errors.pattern">The phone number must be in form +(xxx)xxx-xx-xx</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea 
+            [ngClass]="{
+              'has-danger': formMessage.controls.message.invalid && (formMessage.controls.message.dirty || formMessage.controls.message.touched),
+              'has-success': formMessage.controls.message.valid && (formMessage.controls.message.dirty || formMessage.controls.message.touched)
+            }"
+            type="text" 
+            formControlName="message"               
+            class="form-control" 
+            placeholder="Your message" 
+            required></textarea>
+          <div class="form-control-feedback"
+            *ngIf="formMessage.controls.message.errors && (formMessage.controls.message.dirty || formMessage.controls.message.touched)">
+            <p *ngIf="formMessage.controls.message.errors.required">Message is required</p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-block">Send</button>
+      </form>
+    </div>
+    <div class="wrapper-contacts">
+      <h4>Connect with us:</h4>
+      <div class="panel">        
+        <p class="list-group-item">{{personalInfo.phone.base}}</p>
+        <p class="list-group-item">{{personalInfo.phone.optional}}</p>
+      </div>
+      <div class="panel"> 
+        <p class="list-group-item">{{personalInfo.adress}}</p>
+      </div>
+      <div class="panel">
+        <p class="list-group-item">{{personalInfo.email}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-success position-message" role="alert" *ngIf="isSuccessSend">
+    Message successful sent!
+  </div>
+  <div class="alert alert-danger position-message" role="alert" *ngIf="isWarningSend">
+    Please fill form!
+  </div>
+  <div class="map"
+    leaflet
+    [leafletOptions]="options">
+  </div>
+</div>
+
+
