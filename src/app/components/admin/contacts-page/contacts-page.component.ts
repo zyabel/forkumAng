@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { Message, PersonalInfo } from '../../../interfaces/news.interface';
+import { PersonalInfo } from '../../../interfaces/news.interface';
 import { DataServiceService } from '../../../services';
 
 @Component({
@@ -35,9 +35,9 @@ export class ContactsPageComponent implements OnInit {
   }
 
   confirmEditInfo() {
+    this.checkData();
     this.dataService.editPersonalInfo(this.personalInfo);
     this.isLoading = true;
-    this.checkData();
   }
 
   checkData () {
@@ -47,6 +47,7 @@ export class ContactsPageComponent implements OnInit {
         this.isLoading = false;
         this.isSuccess = true;
         this.cd.markForCheck();
+
       } else {
         this.isDanger = true;
         this.cd.markForCheck();
