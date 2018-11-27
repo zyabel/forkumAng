@@ -81,7 +81,7 @@ export class ContactsPageComponent implements OnInit {
       email: this.formMessage.value.email,
       phone: this.formMessage.value.phone,
       message: this.formMessage.value.message,
-      data: new Date()
+      data: new Date().toString()
     };
 
     if (this.formMessage.valid) {

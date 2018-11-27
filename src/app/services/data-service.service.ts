@@ -69,4 +69,25 @@ export class DataServiceService {
 
     return personalInfo;
   }
+
+  getAllMessage(): Observable<Message[]> {
+    const messages = this.messageCollection.snapshotChanges().map(message => {
+      return message.map(a => {
+        const data = a.payload.doc.data();
+        data.id = a.payload.doc.id;
+
+        return data;
+      });
+    });
+
+    return messages;
+  }
+
+  deleteMessage(id: string): void {
+    this.messageCollection.doc(id).delete();
+  }
+
+  editPersonalInfo(personalInfo: PersonalInfo): void {
+    this.infoCollection.doc(personalInfo.id).update(personalInfo);
+  }
 }

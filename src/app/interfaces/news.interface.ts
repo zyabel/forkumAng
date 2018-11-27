@@ -11,7 +11,8 @@ export interface Message {
   email: string;
   phone: number;
   message: string;
-  data: Date;
+  data: string;
+  id?: string;
 }
 
 export interface PersonalInfo {

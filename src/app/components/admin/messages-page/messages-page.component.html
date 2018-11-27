@@ -1,3 +1,43 @@
-<p>
-    Messages-page works!
-</p>
+<div class="container">
+  <div class="card mb-2 mt-2 border-dark" *ngFor="let message of messages; trackBy: trackByFn" >
+    <div class="card-header border-dark">
+      <span>ID: {{message.id}}</span> 
+      <button class="btn btn-danger" (click)="deleteMessage(message.id)">Delete</button>
+    </div>       
+    <div class="card-body" >
+      <span class="card-text "><b>Name: </b>{{message.name}}</span>
+      <span class="card-text "><b>Phone:</b> {{message.phone}}</span>
+      <span class="card-text "><b>Email:</b> {{message.email}}</span>
+      <span class="card-text "><b>Data: </b>{{message.data | date: 'medium'}}</span>
+    </div>
+    <div class="card-footer border-dark">{{message.message}}</div>
+  </div>
+
+  <table class="table" *ngFor="let message of messages; trackBy: trackByFn">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" class="name">Name</th>
+          <th scope="col" class="email">Email</th>
+          <th scope="col" class="phone">Phone</th>
+          <th scope="col" class="data">Data</th>
+          <th scope="col" class="message">Message</th>
+          <th scope="col" class="button">
+            <button class="btn btn-danger" (click)="deleteMessage(message.id)">Delete</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{message.name}}</td>
+          <td>{{message.email}}</td>
+          <td>{{message.phone}}</td>
+          <td>{{message.data | date: 'medium'}}</td>
+          <td colspan="2">{{message.message}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  <div class="panel mb-5" *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+</div>
