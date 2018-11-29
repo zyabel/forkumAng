@@ -24,3 +24,16 @@ export interface PersonalInfo {
   email: string;
   id?: string;
 }
+
+export interface ProductCard {
+  id: string;
+  information: {
+    cardTitle: string;
+    imgPath: string;
+    price: number;
+  };
+  modal: {
+    description: string;
+  };
+}
+

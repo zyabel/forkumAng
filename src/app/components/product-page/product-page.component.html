@@ -1,26 +1,161 @@
-<p>
-  sorting:
-</p>
-<div class="row">
-  <div class="col-xs-12 col-12">
-    <div class="content-wrapper">
-      <p class="content-item" *ngFor="let content of returnedArray">{{content}}
-        <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+<div class="container">
+  <p>
+    sorting:
+  </p>
+  <div class="row">
+    <div class="col-xs-12 col-12">
+      <div class="panel mb-2" *ngIf="isLoading">
+        <app-spinner></app-spinner>
+      </div>  
+      <tabset [vertical]="true" type="pills" class="tabset-block"  *ngIf="!isLoading">
 
-        <ng-template #template>
-          <div class="modal-header">
-            <h4 class="modal-title pull-left">Modal</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            This is a modal with {{content}}
-          </div>
-        </ng-template>
-      </p>
+        <!-- General tab content -->
+        <tab heading="Vertical 1">
+            <div class="content-wrapper">
+      
+                <!-- Card content -->
+                <div class="card" *ngFor="let content of returnedArray">
+                    <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                    <div class="card-body">
+                      <h6>{{content.information.cardTitle}}</h6>
+                      <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
+                      <button type="button" class="btn btn-primary" (click)="openModal(template)">More</button>
+                    </div>
+          
+                    <!-- Modal window -->
+                    <ng-template #template>
+                      <div class="modal-header">
+                        <h4 class="modal-title pull-left">Modal</h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="panel-modal">
+                          <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                          <div class="info">
+                            <h5 class="card-title">{{content.information.cardTitle}}</h5>
+                            <p class="card-text">Цена: {{content.information.price}}</p>
+                            <p>{{content.modal.description}}</p>
+                          </div>
+                        </div>
+                        <!-- Tabs block -->
+                        <div>
+                          <tabset>
+                            <tab heading="Description" id="tab1">{{content.modal.description}}</tab>
+                            <tab heading="Characteristics">
+                              <div class="table-responsive">
+                                  <table class="table">
+                                      <table class="attribute table">
+                                          <thead>
+                                            <tr>
+                                              <td colspan="2"><b>Основные характеристики</b></td>
+                                            </tr>
+                                            </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>Тип</td>
+                                                  <td>Мульти-сплит внутренний блок</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Тип установки внутреннего блока</td>
+                                                  <td>Настенный</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Рекомендованная площадь помещения (м²)</td>
+                                                  <td>20</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Тип фреона</td>
+                                                  <td>R410</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Холодопроизводительность (кВт)</td>
+                                                  <td>2,1</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Теплопроизводительность (кВт)</td>
+                                                  <td>2,2</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Уровень шума, внутренний блок (дБ(А))</td>
+                                                  <td>25/26/28/30/32/35/37</td>
+                                                </tr>
+                                              </tbody>
+                                            <thead>
+                                            <tr>
+                                              <td colspan="2"><b>Дополнительные характеристики</b></td>
+                                            </tr>
+                                            </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>Диаметр газовой магистрали (мм/дюйм)</td>
+                                                  <td>9,53/3,8"</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Диаметр жидкостной магистрали (мм/дюйм)</td>
+                                                  <td>6,38/1,4"</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Воздухопроизводительность (м³/ч)</td>
+                                                  <td>450</td>
+                                                </tr>
+                                              </tbody>
+                                            <thead>
+                                              <tr>
+                                                <td colspan="2"><b>Габариты, вес</b></td>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>Габаритные размеры/вн.блок (мм)</td>
+                                                <td>860x153x299</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Масса вн.блок (кг)</td>
+                                                <td>9.5</td>
+                                              </tr>
+                                            </tbody>
+                                      </table>
+                                  </table>
+                                </div>
+                            </tab>
+                            <tab heading="Carry&Cash">
+                              <div class="inner">
+                                <p>К оплате принимаются как <strong>наличные</strong>, так и <strong>безналичные</strong> денежные средства.</p>    
+                                <p><strong>Наличные денежные средства</strong> принимаются к оплате только по г. Киеву и пригороду по факту доставки товара (стоимость установки кондиционера оплачивается отдельно - по факту монтажа).</p>
+                                <p>Оплата производится в национальной валюте Украины – гривне по курсу, указанному на сайте в момент осуществления заказа.<br>
+                                В случае, если подъем в квартиру крупногабаритного товара будет производиться вручную (без наличия работающего лифта), стоимость этой услуги составит 15 грн. за этаж.</p>
+                                <p><strong>Безналичные денежные средства</strong> принимаются&nbsp;от физических и юридических лиц на основании счетов, которые Вы можете получить от нас по факсу или электронной почте.</p>
+                                <p>Оплата производится через кассу любого банка или с расчетного счета фирмы.</p>
+                                <p><strong>Для юридических лиц</strong> все необходимые документы предоставляются вместе с товаром или высылаются по почте.</p>
+                                <p><strong>Доставка по Киеву</strong><br>
+                                Осуществляется бесплатно (если сумма Вашей покупки превышает 1500 грн.), на следующий день после оформления заказа по указанному Вами адресу. В случае если сумма покупки составляет менее 1500 грн., стоимость доставки будет составлять 40 грн.<br>
+                                <br>
+                                <strong>Доставка в пригород</strong><br>
+                                Осуществляется платно и рассчитывается: 5 грн./км от границы Киева до места доставки, на следующий день после оформления заказа по указанному Вами адресу.</p>
+                                <p><strong>Доставка по Украине </strong><br>
+                                Стоимость доставки оплачивается клиентом во время получения товара. Доставка осуществляется одним из перевозчиков – Интайм, Автолюкс, Ночной экспресс (способ доставки Вы можете оговорить с нашим консультантом при уточнении заказа).</p>
+                                <p>Доставка будет произведена в течении 2-3 дней после поступления денег на наш расчетный счет в офис компании перевозчика в город из которого был сделан заказ.</p>
+                              </div>
+                            </tab>
+                          </tabset>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+              </div>
+
+              <!-- pagination -->
+              <div class="pagination-wrap">
+                <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
+              </div>              
+        </tab>
+
+        <!-- General tab content -->
+        <tab heading="Vertical 2">Vertical content 2</tab>
+      </tabset>          
     </div>
-    <pagination [totalItems]="contentArray.length" (pageChanged)="pageChanged($event)"></pagination>
   </div>
 </div>
 

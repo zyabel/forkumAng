@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { News, Message, PersonalInfo } from '../interfaces/news.interface';
+import { News, Message, PersonalInfo, ProductCard } from '../interfaces/news.interface';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -15,11 +15,13 @@ export class DataServiceService {
   newsCollection: AngularFirestoreCollection<News>;
   messageCollection: AngularFirestoreCollection<Message>;
   infoCollection: AngularFirestoreCollection<PersonalInfo>;
+  productsCollection: AngularFirestoreCollection<ProductCard>;
 
   constructor(private afs: AngularFirestore) {
     this.newsCollection = this.afs.collection('news');
     this.messageCollection = this.afs.collection('messages');
     this.infoCollection = this.afs.collection('personalInfo');
+    this.productsCollection = this.afs.collection('products');
    }
 
   // news methods
@@ -89,5 +91,19 @@ export class DataServiceService {
 
   editPersonalInfo(personalInfo: PersonalInfo): void {
     this.infoCollection.doc(personalInfo.id).update(personalInfo);
+  }
+
+  // products methods
+  getAllProducts(): Observable<ProductCard[]> {
+    const products = this.productsCollection.snapshotChanges().map(product => {
+      return product.map(a => {
+        const data = a.payload.doc.data();
+        data.id = a.payload.doc.id;
+
+        return data;
+      });
+    });
+
+    return products;
   }
 }
