@@ -21,7 +21,7 @@ export class DataServiceService {
     this.newsCollection = this.afs.collection('news');
     this.messageCollection = this.afs.collection('messages');
     this.infoCollection = this.afs.collection('personalInfo');
-    this.productsCollection = this.afs.collection('products');
+    // this.productsCollection = this.afs.collection('splitCollection');
    }
 
   // news methods
@@ -94,7 +94,8 @@ export class DataServiceService {
   }
 
   // products methods
-  getAllProducts(): Observable<ProductCard[]> {
+  getAllProducts(type): Observable<ProductCard[]> {
+    this.productsCollection = this.afs.collection(type);
     const products = this.productsCollection.snapshotChanges().map(product => {
       return product.map(a => {
         const data = a.payload.doc.data();

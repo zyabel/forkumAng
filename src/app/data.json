@@ -1,0 +1,40 @@
+{
+  "saleCollection": [
+    {
+      "information": {
+        "cardTitle": "COOPER&HUNTER",
+        "imgPath": "/",
+        "price": 0.1,
+        "shortDesc": [
+          "Низкий уровень шума «More Silence»",
+          "Таймер",
+          "Ночной режим",
+          "Самодиагностика",
+          "Осушение"
+        ]
+      },
+      "modal": {
+        "description": "SALE SALE"
+      },
+      "tableData": {
+        "airCapacity": 717,
+        "freezPower": 3,
+        "frion": "R410",
+        "gasPipe": "9.53/3.8",
+        "heatPower": 3,
+        "liquidPipe": "6.38/1.4",
+        "mesuresInner": "860x153x299",
+        "mesuresOutter": "860x553x399",
+        "noise": "25/26/28/30/32/35/37",
+        "square": 23,
+        "title_1": "Основные характеристики",
+        "title_2": "Дополнительные характеристики",
+        "title_3": "Габариты, вес",
+        "typeInner": "Мульти-сплит внутренний блок",
+        "typeOutter": "Настенный",
+        "weightInner": 12,
+        "weightOutter": 45
+      }
+    }
+  ]
+}
