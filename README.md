@@ -14,14 +14,55 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Dowload data.json to firebase
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Add your data to the data.json file and
+Run `node json-to-firestore.js` to download data.json information to DB.
 
-## Running end-to-end tests
+## JSON generator
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+> Url: https://www.json-generator.com/
 
-## Further help
+Schema: 
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+['{{repeat(15, 15)}}',
+  {
+    "information": {
+      "cardTitle": "СПЛИТ СИСТЕМ COOPER&HUNTER CHML-IW" + '{{integer(0, 20)}}' + "AANK WITH WI-FI",
+      "imgPath": "/",
+      "price": '{{integer(1500, 12000)}}',
+      "shortDesc": [
+        "Низкий уровень шума «More Silence»",
+        "Таймер",
+        "Ночной режим",
+        "Самодиагностика",
+        "Осушение"
+      ]  
+    },
+    "modal": {
+      "description": '{{lorem(1, "paragraphs")}}'
+    },
+    "tableData": {
+      "airCapacity": '{{integer(50, 1200)}}',
+      "freezPower": '{{integer(1, 3)}}',
+      "frion": "R410",
+      "gasPipe": "9.53/3.8",
+      "heatPower": '{{integer(1, 3)}}',
+      "liquidPipe": "6.38/1.4",
+      "mesuresInner": "860x153x299",
+      "mesuresOutter": "860x553x399",
+      "noise": "25/26/28/30/32/35/37",
+      "square": '{{integer(10, 30)}}',
+      "title_1": "Основные характеристики",
+      "title_2": "Дополнительные характеристики",
+      "title_3": "Габариты, вес",
+      "typeInner": "Мульти-сплит внутренний блок",
+      "typeOutter": "Настенный",
+      "weightInner": '{{integer(5, 13)}}',
+      "weightOutter": '{{integer(20, 50)}}' 
+    }
+ 	}
+]
+
+```

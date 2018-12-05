@@ -1,3 +1,58 @@
-<p>
-  product-page works!
-</p>
+<div class="container">
+  <p>
+    sorting:
+  </p>
+  <div class="row">
+    <div class="col-xs-12 col-12">
+      <div class="panel mb-2" *ngIf="isLoading">
+        <app-spinner></app-spinner>
+      </div>  
+      <tabset [vertical]="true" type="pills" class="tabset-block"  *ngIf="!isLoading">
+
+        <!-- General tab content -->
+        <tab heading="Сплит системы" (select)="selectedPills($event)" id="1">
+            <!-- Edit modal form -->
+            <app-edit-modal 
+              [cash]="cash"
+              [returnedArray]="returnedArray" 
+              (delete)="deleteCard($event)" 
+              (edit)="editCard($event)" 
+              (editCash)="editCardCash($event)">
+            </app-edit-modal>
+
+          <!-- pagination -->
+          <div class="pagination-wrap">
+            <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
+          </div>                          
+        </tab>
+
+        <!-- General tab content -->
+        <tab heading="Полупромышленные кондиционер" (select)="selectedPills($event)" id="2">Полупромышленные кондиционеры</tab>
+
+        <!-- General tab content -->
+        <tab heading="Освежители" (select)="selectedPills($event)" id="3">Освежители</tab>
+
+        <!-- General tab content -->
+        <tab heading="Обогреватели" (select)="selectedPills($event)" id="4">Обогреватели</tab>
+        
+        <!-- General tab content -->
+        <tab heading="Распродажа" (select)="selectedPills($event)" id="5">
+
+            <!-- Edit modal form -->
+            <app-edit-modal 
+              [cash]="cash"
+              [returnedArray]="returnedArray" 
+              (delete)="deleteCard($event)" 
+              (edit)="editCard($event)" 
+              (editCash)="editCardCash($event)">
+            </app-edit-modal>
+
+            <!-- pagination -->
+            <div class="pagination-wrap">
+              <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
+            </div>    
+        </tab>
+      </tabset>          
+    </div>
+  </div>
+</div>

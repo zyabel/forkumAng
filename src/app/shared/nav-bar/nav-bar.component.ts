@@ -23,23 +23,23 @@ export class NavBarComponent implements OnInit {
     this.links = [
       {
         path: 'home',
-        title: 'Home'
+        title: 'Главная'
       },
       {
         path: 'services',
-        title: 'Services'
+        title: 'Услуги'
       },
       {
         path: 'products',
-        title: 'Products'
+        title: 'Каталог'
       },
       {
         path: 'faq',
-        title: 'Faq'
+        title: 'Вопросы'
       },
       {
         path: 'contacts',
-        title: 'Contacts'
+        title: 'Контакты'
       }
     ];
 
