@@ -16,11 +16,13 @@ export class DataServiceService {
   messageCollection: AngularFirestoreCollection<Message>;
   infoCollection: AngularFirestoreCollection<PersonalInfo>;
   productsCollection: AngularFirestoreCollection<ProductCard>;
+  cashInfoCollection: AngularFirestoreCollection<string>;
 
   constructor(private afs: AngularFirestore) {
     this.newsCollection = this.afs.collection('news');
     this.messageCollection = this.afs.collection('messages');
     this.infoCollection = this.afs.collection('personalInfo');
+    this.cashInfoCollection = this.afs.collection('cashCarry');
    }
 
   // news methods
@@ -105,6 +107,19 @@ export class DataServiceService {
     });
 
     return products;
+  }
+
+  getCashInfo() {
+    const cashInfo = this.cashInfoCollection.snapshotChanges().map(info => {
+      return info.map(a => {
+        const data = a.payload.doc.data();
+        data.id = a.payload.doc.id;
+
+        return data;
+      });
+    });
+
+    return cashInfo;
   }
 
   deleteCard(id, collection): void {

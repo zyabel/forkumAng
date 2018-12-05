@@ -11,142 +11,19 @@
 
         <!-- General tab content -->
         <tab heading="Сплит системы" (select)="selectedPills($event)" id="1">
-            <div class="content-wrapper">
-      
-                <!-- Card content -->
-                <div class="card" *ngFor="let content of returnedArray">
-                    <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
-                    <div class="card-body">
-                      <h6>{{content.information.cardTitle}}</h6>
-                      <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
-                      <div class="panel-button">
-                        <button type="button" class="btn btn-danger mr-3" (click)="deleteCard(content.id)">Удалить</button>
-                        <button type="button" class="btn btn-info" (click)="openModal(template)">Редактировать</button>
-                      </div>
-                    </div>
-          
-                    <!-- Modal window -->
-                    <ng-template #template>
-                      <div class="modal-header">
-                        <h4 class="modal-title pull-left">Меню редактирования карточки товара</h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="panel-modal">
-                          <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
-                          <form #formCommonInfo class="form-common-info">
-                            <div class="form-group">
-                              <label for="content.tableData.typeInner">Имя товара</label>
-                              <input type="text" class="form-control" name="content.information.cardTitle" [(ngModel)]="content.information.cardTitle">
-                            </div>
-                            <div class="form-group">
-                              <label for="content.tableData.typeInner">Путь картинки</label>
-                              <input type="text" class="form-control" name="content.information.imgPath" [(ngModel)]="content.information.imgPath">
-                            </div>
-                            <div class="form-group">
-                              <label for="content.tableData.typeInner">Цен</label>
-                              <input type="text" class="form-control" name="content.information.price" [(ngModel)]="content.information.price">
-                            </div>
-                            <div class="form-group">
-                              <label for="content.tableData.typeInner">Описание</label>
-                              <textarea type="text" class="form-control" name="content.modal.description" [(ngModel)]="content.modal.description"></textarea>
-                            </div>                            
-                            <button type="button" class="btn btn-success" (click)="editCard(content.id, content.information, 'information')">Подтвердить</button>
-                          </form>
-                        </div>
-                        <!-- Tabs block -->
-                        <div>
-                          <tabset>
-                            <tab heading="Описание" id="tab1">
-                              <form #formInfo>
-                                <div class="form-group" *ngFor="let item of content.information.shortDesc; let i = index; trackBy:indexTracker">
-                                  <input type="text" class="form-control" name="field{{i}}" [(ngModel)]="content.information.shortDesc[i]">
-                                </div>
-                                <button type="button" class="btn btn-success" (click)="editCard(content.id, content.information.shortDesc, 'information.shortDesc')">Подтвердить</button>
-                              </form>
-                            </tab>
-                            <tab heading="Характеристики">
-                              <form #formData>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.typeInner">Тип</label>
-                                  <input type="text" class="form-control" name="content.tableData.typeInner" [(ngModel)]="content.tableData.typeInner">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.typeOutter">Тип установки внутреннего блока</label>
-                                  <input type="text" class="form-control" name="content.tableData.typeOutter" [(ngModel)]="content.tableData.typeOutter">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.square">Рекомендованная площадь помещения (м²)</label>
-                                  <input type="text" class="form-control" name="content.tableData.square" [(ngModel)]="content.tableData.square">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.frion">Тип фреона</label>
-                                  <input type="text" class="form-control" name="content.tableData.frion" [(ngModel)]="content.tableData.frion">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.freezPower">Холодопроизводительность (кВт)</label>
-                                  <input type="text" class="form-control" name="content.tableData.freezPower" [(ngModel)]="content.tableData.freezPower">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.heatPower">Теплопроизводительность (кВт)</label>
-                                  <input type="text" class="form-control" name="content.tableData.heatPower" [(ngModel)]="content.tableData.heatPower">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.noise">Уровень шума, внутренний блок (дБ(А))</label>
-                                  <input type="text" class="form-control" name="content.tableData.noise" [(ngModel)]="content.tableData.noise">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.gasPipe">Диаметр газовой магистрали (мм/дюйм)</label>
-                                  <input type="text" class="form-control" name="content.tableData.gasPipe" [(ngModel)]="content.tableData.gasPipe">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.liquidPipe">Диаметр жидкостной магистрали (мм/дюйм)</label>
-                                  <input type="text" class="form-control" name="content.tableData.liquidPipe" [(ngModel)]="content.tableData.liquidPipe">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.airCapacity">Воздухопроизводительность (м³/ч)</label>
-                                  <input type="text" class="form-control" name="content.tableData.airCapacity" [(ngModel)]="content.tableData.airCapacity">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.mesuresInner">Габаритные размеры/вн.блок (мм)</label>
-                                  <input type="text" class="form-control" name="content.tableData.mesuresInner" [(ngModel)]="content.tableData.mesuresInner">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.mesuresOutter">Габаритные размеры/нар.блок (мм)</label>
-                                  <input type="text" class="form-control" name="content.tableData.mesuresOutter" [(ngModel)]="content.tableData.mesuresOutter">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.weightInner">Масса вн.блок (кг)</label>
-                                  <input type="text" class="form-control" name="content.tableData.weightInner" [(ngModel)]="content.tableData.weightInner">
-                                </div>
-                                <div class="form-group" > 
-                                  <label for="content.tableData.weightOutter">Масса нар.блок (кг)</label>
-                                  <input type="text" class="form-control" name="content.tableData.weightOutter" [(ngModel)]="content.tableData.weightOutter">
-                                </div>
-                                <button type="button" class="btn btn-success" (click)="editCard(content.id, content.tableData, 'tableData')">Подтвердить</button>
-                              </form>
-                            </tab>
-                            <tab heading="Опалата и доставка">
-                              <form>
-                                <div class="form-group" > 
-                                  <textarea type="text" class="form-control" name="content.tableData.weightOutter" [(ngModel)]="content.tableData.weightOutter"></textarea>
-                                </div>
-                                <button type="button" class="btn btn-success" (click)="editCard(content.id, content.tableData, 'tableData')">Подтвердить</button>
-                              </form>
-                            </tab>
-                          </tabset>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </div>
-              </div>
+            <!-- Edit modal form -->
+            <app-edit-modal 
+              [cash]="cash"
+              [returnedArray]="returnedArray" 
+              (delete)="deleteCard($event)" 
+              (edit)="editCard($event)" 
+              (editCash)="editCardCash($event)">
+            </app-edit-modal>
 
-              <!-- pagination -->
-              <div class="pagination-wrap">
-                <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
-              </div>              
+          <!-- pagination -->
+          <div class="pagination-wrap">
+            <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
+          </div>                          
         </tab>
 
         <!-- General tab content -->
@@ -160,55 +37,15 @@
         
         <!-- General tab content -->
         <tab heading="Распродажа" (select)="selectedPills($event)" id="5">
-            <div class="content-wrapper">
-    
-              <!-- Card content -->
-              <div class="card" *ngFor="let content of returnedArray">
-                  <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
-                  <div class="card-body">
-                    <h6>{{content.information.cardTitle}}</h6>
-                    <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
-                    <div class="panel-button">
-                      <button type="button" class="btn btn-danger mr-3" (click)="deleteCard(content.id)">Удалить</button>
-                      <button type="button" class="btn btn-info" (click)="openModal(template)">Редактировать</button>
-                    </div>
-                  </div>
-        
-                  <!-- Modal window -->
-                  <ng-template #template>
-                    <div class="modal-header">
-                      <h4 class="modal-title pull-left">Modal</h4>
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="panel-modal">
-                        <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
-                        <div class="info">
-                          <h5 class="card-title">{{content.information.cardTitle}}</h5>
-                          <p class="card-text">Цена: {{content.information.price}}</p>
-                          <p>{{content.modal.description}}</p>
-                        </div>
-                      </div>
-                      <!-- Tabs block -->
-                      <div>
-                        <tabset>
-                          <tab heading="Description" id="tab1">
-                            <p *ngFor="let item of content.information.shortDesc">{{item}}</p>
-                          </tab>
-                          <tab heading="Characteristics">
-                            <app-modal-table [tableData]="content.tableData"></app-modal-table>
-                          </tab>
-                          <tab heading="Carry&Cash">
-                            <app-cash></app-cash>
-                          </tab>
-                        </tabset>
-                      </div>
-                    </div>
-                  </ng-template>
-                </div>
-            </div>
+
+            <!-- Edit modal form -->
+            <app-edit-modal 
+              [cash]="cash"
+              [returnedArray]="returnedArray" 
+              (delete)="deleteCard($event)" 
+              (edit)="editCard($event)" 
+              (editCash)="editCardCash($event)">
+            </app-edit-modal>
 
             <!-- pagination -->
             <div class="pagination-wrap">

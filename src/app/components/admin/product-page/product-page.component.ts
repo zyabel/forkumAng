@@ -29,8 +29,7 @@ export class AdminProductPageComponent implements OnInit {
 
   isLoading: boolean = true;
 
-  form;
-
+  cash;
 
   constructor(private modalService: BsModalService,
               private dataService: DataServiceService,
@@ -38,6 +37,8 @@ export class AdminProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentData(this.type);
+    this.dataService.getCashInfo()
+      .subscribe(data => this.cash = data);
   }
 
   getCurrentData(type: string) {
@@ -93,8 +94,12 @@ export class AdminProductPageComponent implements OnInit {
     this.dataService.deleteCard(id,  this.type);
   }
 
-  editCard(id: string, form, documentField): void {
-    this.dataService.editCard(id, this.type, form, documentField);
+  editCard(event): void {
+    this.dataService.editCard(event.id, this.type, event.tableData, event.field);
+  }
+
+  editCardCash(form): void {
+    this.dataService.editCard(this.cash[0].id, 'cashCarry', form, 'text');
   }
 
   indexTracker(index: number, value: any) {
