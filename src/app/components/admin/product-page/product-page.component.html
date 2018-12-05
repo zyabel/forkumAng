@@ -1,3 +1,139 @@
-<p>
-  product-page works!
-</p>
+<div class="container">
+  <p>
+    sorting:
+  </p>
+  <div class="row">
+    <div class="col-xs-12 col-12">
+      <div class="panel mb-2" *ngIf="isLoading">
+        <app-spinner></app-spinner>
+      </div>  
+      <tabset [vertical]="true" type="pills" class="tabset-block"  *ngIf="!isLoading">
+
+        <!-- General tab content -->
+        <tab heading="Сплит системы" (select)="selectedPills($event)" id="1">
+            <div class="content-wrapper">
+      
+                <!-- Card content -->
+                <div class="card" *ngFor="let content of returnedArray">
+                    <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                    <div class="card-body">
+                      <h6>{{content.information.cardTitle}}</h6>
+                      <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
+                      <div class="panel-button">
+                        <button type="button" class="btn btn-danger mr-3">Delete</button>
+                        <button type="button" class="btn btn-info" (click)="openModal(template)">Edit</button>
+                      </div>
+                    </div>
+          
+                    <!-- Modal window -->
+                    <ng-template #template>
+                      <div class="modal-header">
+                        <h4 class="modal-title pull-left">Modal</h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="panel-modal">
+                          <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                          <div class="info">
+                            <h5 class="card-title">{{content.information.cardTitle}}</h5>
+                            <p class="card-text">Цена: {{content.information.price}}</p>
+                            <p>{{content.modal.description}}</p>
+                          </div>
+                        </div>
+                        <!-- Tabs block -->
+                        <div>
+                          <tabset>
+                            <tab heading="Description" id="tab1">
+                              <p *ngFor="let item of content.information.shortDesc">{{item}}</p>
+                            </tab>
+                            <tab heading="Characteristics">
+                              <app-modal-table [tableData]="content.tableData"></app-modal-table>
+                            </tab>
+                            <tab heading="Carry&Cash">
+                              <app-cash></app-cash>
+                            </tab>
+                          </tabset>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+              </div>
+
+              <!-- pagination -->
+              <div class="pagination-wrap">
+                <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
+              </div>              
+        </tab>
+
+        <!-- General tab content -->
+        <tab heading="Полупромышленные кондиционер" (select)="selectedPills($event)" id="2">Полупромышленные кондиционеры</tab>
+
+        <!-- General tab content -->
+        <tab heading="Освежители" (select)="selectedPills($event)" id="3">Освежители</tab>
+
+        <!-- General tab content -->
+        <tab heading="Обогреватели" (select)="selectedPills($event)" id="4">Обогреватели</tab>
+        
+        <!-- General tab content -->
+        <tab heading="Распродажа" (select)="selectedPills($event)" id="5">
+            <div class="content-wrapper">
+    
+              <!-- Card content -->
+              <div class="card" *ngFor="let content of returnedArray">
+                  <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                  <div class="card-body">
+                    <h6>{{content.information.cardTitle}}</h6>
+                    <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
+                    <div class="panel-button">
+                      <button type="button" class="btn btn-danger mr-3">Delete</button>
+                      <button type="button" class="btn btn-info" (click)="openModal(template)">Edit</button>
+                    </div>
+                  </div>
+        
+                  <!-- Modal window -->
+                  <ng-template #template>
+                    <div class="modal-header">
+                      <h4 class="modal-title pull-left">Modal</h4>
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="panel-modal">
+                        <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                        <div class="info">
+                          <h5 class="card-title">{{content.information.cardTitle}}</h5>
+                          <p class="card-text">Цена: {{content.information.price}}</p>
+                          <p>{{content.modal.description}}</p>
+                        </div>
+                      </div>
+                      <!-- Tabs block -->
+                      <div>
+                        <tabset>
+                          <tab heading="Description" id="tab1">
+                            <p *ngFor="let item of content.information.shortDesc">{{item}}</p>
+                          </tab>
+                          <tab heading="Characteristics">
+                            <app-modal-table [tableData]="content.tableData"></app-modal-table>
+                          </tab>
+                          <tab heading="Carry&Cash">
+                            <app-cash></app-cash>
+                          </tab>
+                        </tabset>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+            </div>
+
+            <!-- pagination -->
+            <div class="pagination-wrap">
+              <pagination [totalItems]="productsArray.length" (pageChanged)="pageChanged($event)" [rotate]="rotate" [maxSize]="10"></pagination>
+            </div>    
+        </tab>
+      </tabset>          
+    </div>
+  </div>
+</div>

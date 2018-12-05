@@ -1,0 +1,76 @@
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .card {
+    width: 260px;
+    margin: 0 5px 5px 5px;
+
+    .panel-button {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+
+.tabset-block {
+  display: flex;
+
+  .nav.nav-stacked {
+    width: 350px;
+  }
+
+  .nav-link.active {
+    background: linear-gradient(90deg, #007bff, white);
+  }
+
+  .nav-item .nav-link {
+    &:hover {
+      background: linear-gradient(90deg, #007bff, white);
+      color: #fff;
+    }
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+}
+
+.modal-open {
+  .modal-dialog {
+    .panel-modal {
+      display: flex;
+
+      .card-img-top {
+        width: 30%;
+        margin-right: 30px;
+      }
+    }
+
+    .tab-container > .nav.nav-tabs {
+      margin-bottom: 20px;
+    }
+
+    thead {
+      background: #ebe8e8;
+    }
+  }
+}
+
+.pagination-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media (min-width: 576px) {
+  .modal-open {
+    .modal-dialog {
+      max-width: 880px;
+      margin: 1.75rem auto;
+    }
+  }
+}

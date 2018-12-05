@@ -14,7 +14,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   imports: [
     CommonModule,
     ContactsPageRoutingModule,
-    LeafletModule.forRoot(),
+    LeafletModule,
     FormsModule,
     ReactiveFormsModule
   ],

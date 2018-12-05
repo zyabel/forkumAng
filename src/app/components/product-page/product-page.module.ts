@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductPageComponent } from './product-page.component';
 import { ProductPageRoutingModule } from './product-page.routing.module';
-import { SpinnerModule, CashComponent, ModalTableComponent } from '../../shared';
+import { SpinnerModule, CashModule, ModalTableModule } from '../../shared';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -12,9 +12,7 @@ import { TabsModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
-    ProductPageComponent,
-    CashComponent,
-    ModalTableComponent
+    ProductPageComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +20,9 @@ import { TabsModule } from 'ngx-bootstrap';
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule.forRoot(),
-    SpinnerModule
+    SpinnerModule,
+    CashModule,
+    ModalTableModule
   ],
   exports: [
     ProductPageComponent
