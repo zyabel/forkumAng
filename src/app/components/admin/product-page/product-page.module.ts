@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AdminProductPageComponent } from './product-page.component';
 import { ProductPageRoutingModule } from './product-page.routing.module';
@@ -21,7 +22,8 @@ import { TabsModule } from 'ngx-bootstrap';
     TabsModule.forRoot(),
     SpinnerModule,
     CashModule,
-    ModalTableModule
+    ModalTableModule,
+    FormsModule
   ],
   exports: [
     AdminProductPageComponent

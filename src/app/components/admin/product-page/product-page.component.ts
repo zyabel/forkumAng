@@ -29,6 +29,9 @@ export class AdminProductPageComponent implements OnInit {
 
   isLoading: boolean = true;
 
+  form;
+
+
   constructor(private modalService: BsModalService,
               private dataService: DataServiceService,
               private cd: ChangeDetectorRef) {}
@@ -60,6 +63,7 @@ export class AdminProductPageComponent implements OnInit {
   selectedPills(event: TabDirective): string {
     switch (event.id) {
       case '1':
+        this.type = 'splitCollection';
         this.getCurrentData('splitCollection');
         break;
 
@@ -76,6 +80,7 @@ export class AdminProductPageComponent implements OnInit {
         break;
 
       case '5':
+        this.type = 'saleCollection';
         this.getCurrentData('saleCollection');
         break;
 
@@ -84,4 +89,15 @@ export class AdminProductPageComponent implements OnInit {
     }
   }
 
+  deleteCard(id: string): void {
+    this.dataService.deleteCard(id,  this.type);
+  }
+
+  editCard(id: string, form, documentField): void {
+    this.dataService.editCard(id, this.type, form, documentField);
+  }
+
+  indexTracker(index: number, value: any) {
+    return index;
+  }
 }

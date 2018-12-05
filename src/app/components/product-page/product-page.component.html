@@ -15,7 +15,7 @@
       
                 <!-- Card content -->
                 <div class="card" *ngFor="let content of returnedArray">
-                    <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                    <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
                     <div class="card-body">
                       <h6>{{content.information.cardTitle}}</h6>
                       <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
@@ -32,7 +32,7 @@
                       </div>
                       <div class="modal-body">
                         <div class="panel-modal">
-                          <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                          <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
                           <div class="info">
                             <h5 class="card-title">{{content.information.cardTitle}}</h5>
                             <p class="card-text">Цена: {{content.information.price}}</p>
@@ -96,7 +96,7 @@
                     </div>
                     <div class="modal-body">
                       <div class="panel-modal">
-                        <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                        <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
                         <div class="info">
                           <h5 class="card-title">{{content.information.cardTitle}}</h5>
                           <p class="card-text">Цена: {{content.information.price}}</p>

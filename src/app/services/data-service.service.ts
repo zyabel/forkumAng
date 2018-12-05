@@ -21,7 +21,6 @@ export class DataServiceService {
     this.newsCollection = this.afs.collection('news');
     this.messageCollection = this.afs.collection('messages');
     this.infoCollection = this.afs.collection('personalInfo');
-    // this.productsCollection = this.afs.collection('splitCollection');
    }
 
   // news methods
@@ -106,5 +105,15 @@ export class DataServiceService {
     });
 
     return products;
+  }
+
+  deleteCard(id, collection): void {
+    this.productsCollection = this.afs.collection(collection);
+    this.productsCollection.doc(id).delete();
+  }
+
+  editCard(id: string, collection: string, updateData, documentField): void {
+    this.productsCollection = this.afs.collection(collection);
+    this.productsCollection.doc(id).update({[documentField]: updateData});
   }
 }

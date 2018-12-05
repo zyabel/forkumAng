@@ -43,6 +43,10 @@
     .panel-modal {
       display: flex;
 
+      .form-common-info {
+        width: 100%;
+      }
+
       .card-img-top {
         width: 30%;
         margin-right: 30px;
