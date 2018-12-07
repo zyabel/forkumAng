@@ -1,16 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
 import { DataServiceService } from '../../../services';
-import { News } from '../../../interfaces/news.interface';
+import { News, Slide } from '../../../interfaces/news.interface';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class AdminHomePageComponent implements OnInit {
   newsArray: News[];
+
+  sliderArray: Slide[];
 
   isLoading: boolean = true;
 
@@ -18,7 +22,11 @@ export class AdminHomePageComponent implements OnInit {
 
   news: News;
 
-  isEdit: boolean = false;
+  slide: Slide;
+
+  isEditNews: boolean = false;
+
+  isEditSlide: boolean = false;
 
   constructor(private dataService: DataServiceService,
               private cd: ChangeDetectorRef) { }
@@ -29,6 +37,15 @@ export class AdminHomePageComponent implements OnInit {
         this.isLoading = false;
         this.newsArray = data;
         this.cd.detectChanges();
+      });
+
+    this.dataService.getSliderData()
+      .subscribe(data => {
+        if (data) {
+          this.sliderArray = data;
+          this.isLoading = false;
+          this.cd.detectChanges();
+        }
       });
   }
 
@@ -59,24 +76,54 @@ export class AdminHomePageComponent implements OnInit {
 
         this.cd.detectChanges();
       });
-    this.isEdit = true;
+    this.isEditNews = true;
   }
 
-  confirmEditNews(title: string, text: string, data: string) {
+  editSlide(id: string): void {
+    if (this.slide === undefined) {
+      this.slide = {
+        path: '',
+        title: '',
+        info: ''
+      };
+    }
+
+    this.dataService.getSlideById(id)
+      .subscribe((data: Slide) => {
+        this.slide = data;
+        this.slide.id = id;
+
+        this.cd.detectChanges();
+      });
+    this.isEditSlide = true;
+  }
+
+  confirmEditNews(title: string, text: string, data: string): void {
     const updateNews = Object.assign( {}, this.news);
     this.dataService.editNews(updateNews);
-    this.isEdit = false;
+    this.isEditNews = false;
+  }
+
+  confirmEditSlide(title: string, info: string, path: string): void {
+    const updateSlide = Object.assign( {}, this.slide);
+    this.dataService.editSlide(updateSlide);
+    this.isEditSlide = false;
   }
 
   deleteNews(id: string): void {
     this.dataService.deleteNews(id);
   }
 
+  deleteSlide(id: string): void {
+    this.dataService.deleteSlide(id);
+  }
+
   trackByFn(index, item) {
     return index;
   }
 
-  cancelNews(): void {
-    this.isEdit = false;
+  cancel(): void {
+    this.isEditNews = false;
+    this.isEditSlide = false;
   }
 }

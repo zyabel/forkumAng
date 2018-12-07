@@ -1,59 +1,106 @@
 <div class="container">
-  <section>
-    <div class="panel mt-3" *ngIf="!isLoading">
-      <div class="panel" *ngIf="!isEdit">        
-        <form>          
-          <div class="form-group">
-            <h3>Please add new information</h3>
-            <label >Title of news</label>
-            <input type="text" class="form-control" name="title"  [(ngModel)]="title" placeholder="Title of news">            
+  <tabset type="pills" class="tabset-block"  *ngIf="!isLoading">
+    <!-- General tab content -->
+    <tab heading="Новости" id="1">
+        <div class="container">
+            <section>
+              <div class="panel mt-3" *ngIf="!isLoading">
+                <div class="panel" *ngIf="!isEditNews">        
+                  <form>          
+                    <div class="form-group">
+                      <h3>Добавить новости</h3>
+                      <label >Заголовок новости</label>
+                      <input type="text" class="form-control" name="title"  [(ngModel)]="title">            
+                    </div>
+                    <div class="form-group">
+                      <label >Текст новости</label>
+                      <textarea class="form-control" rows="3" name="text" [(ngModel)]="text" ></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label >Дата новости</label>
+                      <input type="date" class="form-control" rows="3" name="data" [(ngModel)]="data" >
+                    </div>
+                  </form>
+                  <button class="btn btn-success m-0" (click)="addNews(title,text,data)">Добавить</button>
+                </div>
+                <div class="panel mt-3 edit" *ngIf="isEditNews">    
+                  <form>          
+                    <div class="form-group">
+                      <h3>Реадктирование новости</h3>
+                      <label >Заголовок новости</label>
+                      <input type="text" class="form-control" name="title"  [(ngModel)]="news.title">
+                    </div>
+                    <div class="form-group">
+                      <label >Заголовок новости</label>
+                      <textarea class="form-control" rows="3" name="text" [(ngModel)]="news.text"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label >Дата новости</label>
+                      <input type="date" class="form-control" rows="3" name="data" [(ngModel)]="news.data">
+                    </div>
+                    <div class="panel">
+                      <button class="btn btn-success" (click)="confirmEditNews(title,text,data)">ОК</button>
+                      <button class="btn btn-secondary ml-3" (click)="cancel()">Отмена</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card mb-5 mt-5 border-dark" *ngFor="let news of newsArray; trackBy: trackByFn" >
+                  <h5 class="card-header border-dark">{{news.title}}</h5>        
+                  <div class="card-body" >
+                    <p class="card-text ">{{news.text}}</p>          
+                  </div>
+                  <div class="card-footer text-muted border-dark">{{news.data}}</div>
+                  <div class="panel">
+                    <button class="btn btn-danger m-3" (click)="deleteNews(news.id)">Удалить</button>
+                    <button class="btn btn-danger m-3" class="btn btn-info m-3" (click)="editNews(news.id)">Редактирование</button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel mb-2" *ngIf="isLoading">
+                <app-spinner></app-spinner>
+              </div>
+            </section>
+          </div>           
+    </tab>
+
+    <!-- General tab content -->
+    <tab heading="Слайдер" id="2">
+      <div class="container">
+        <div class="panel mt-3 edit" *ngIf="isEditSlide">    
+          <form>          
+            <div class="form-group">
+              <h3>Редактирование слайдов</h3>
+              <label >Заголовок слайда</label>
+              <input type="text" class="form-control" name="title"  [(ngModel)]="slide.title">
+            </div>
+            <div class="form-group">
+              <label >Техт слайда</label>
+              <textarea class="form-control" rows="3" name="info" [(ngModel)]="slide.info"></textarea>
+            </div>
+            <div class="form-group">
+                <label >Картинка слайда</label>
+                <input class="form-control" rows="3" name="path" [(ngModel)]="slide.path">
+              </div>
+            <div class="panel">
+              <button class="btn btn-success" (click)="confirmEditSlide(title,info, path)">ОК</button>
+              <button class="btn btn-secondary ml-3" (click)="cancel()">Отмена</button>
+            </div>
+          </form>
           </div>
-          <div class="form-group">
-            <label >Fill text news</label>
-            <textarea class="form-control" rows="3" name="text" [(ngModel)]="text" ></textarea>
+          <div class="container-cards">
+            <div class="card mb-5 mt-5 border-dark" *ngFor="let slide of sliderArray; trackBy: trackByFn">
+              <img src={{slide.path}} alt="third slide" style="display: block; margin: 10px auto;">
+              <h5 class="card-header">{{slide.title}}</h5>        
+              <div class="card-body" >
+                <p class="card-text ">{{slide.info}}</p>       
+              </div>
+              <div class="panel">
+                <button class="btn btn-danger m-3" (click)="deleteSlide(slide.id)">Удалить</button>
+                <button class="btn btn-danger m-3" class="btn btn-info m-3" (click)="editSlide(slide.id)">Редактирование</button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label >Data news</label>
-            <input type="date" class="form-control" rows="3" name="data" [(ngModel)]="data" >
-          </div>
-        </form>
-        <button class="btn btn-success m-0" (click)="addNews(title,text,data)">Add news</button>
-      </div>
-      <div class="panel mt-3 edit" *ngIf="isEdit">    
-        <form>          
-          <div class="form-group">
-            <h3>Please edit news</h3>
-            <label >Title of news</label>
-            <input type="text" class="form-control" name="title"  [(ngModel)]="news.title" placeholder="Title of news">
-          </div>
-          <div class="form-group">
-            <label >Text news</label>
-            <textarea class="form-control" rows="3" name="text" [(ngModel)]="news.text"></textarea>
-          </div>
-          <div class="form-group">
-            <label >Data news</label>
-            <input type="date" class="form-control" rows="3" name="data" [(ngModel)]="news.data">
-          </div>
-          <div class="panel">
-            <button class="btn btn-success" (click)="confirmEditNews(title,text,data)">Confirm</button>
-            <button class="btn btn-secondary ml-3" (click)="cancelNews()">Cancel</button>
-          </div>
-        </form>
-      </div>
-      <div class="card mb-5 mt-5 border-dark" *ngFor="let news of newsArray; trackBy: trackByFn" >
-        <h5 class="card-header border-dark">{{news.title}}</h5>        
-        <div class="card-body" >
-          <p class="card-text ">{{news.text}}</p>          
         </div>
-        <div class="card-footer text-muted border-dark">{{news.data}}</div>
-        <div class="panel">
-          <button class="btn btn-danger m-3" (click)="deleteNews(news.id)">Delete</button>
-          <button class="btn btn-danger m-3" class="btn btn-info m-3" (click)="editNews(news.id)">Edit</button>
-        </div>
-      </div>
-    </div>
-    <div class="panel mb-2" *ngIf="isLoading">
-      <app-spinner></app-spinner>
-    </div>
-  </section>
+    </tab>
+  </tabset>
 </div>

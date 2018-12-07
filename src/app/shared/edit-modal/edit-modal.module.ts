@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { EditModalComponent } from './edit-modal.component';
-import { CashModule } from '../';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap';
@@ -16,8 +15,7 @@ import { TabsModule } from 'ngx-bootstrap';
     CommonModule,
     FormsModule,
     ModalModule,
-    TabsModule,
-    CashModule
+    TabsModule
   ],
   exports: [
     EditModalComponent

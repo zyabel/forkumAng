@@ -1,13 +1,13 @@
-import { Component, EventEmitter, OnInit, TemplateRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, TemplateRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { TabDirective } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-edit-modal',
   templateUrl: './edit-modal.component.html',
-  styleUrls: ['./edit-modal.component.scss']
+  styleUrls: ['./edit-modal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditModalComponent implements OnInit {
   modalRef: BsModalRef;
@@ -24,9 +24,9 @@ export class EditModalComponent implements OnInit {
 
   constructor(private modalService: BsModalService) { }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  deleteCard(id) {
+  deleteCard(id): void {
     this.delete.emit(id);
   }
 
@@ -34,12 +34,12 @@ export class EditModalComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  editCard(id, tableData, field) {
+  editCard(id, tableData, field): void {
     const event = {id, tableData, field};
     this.edit.emit(event);
   }
 
-  editCardCash(cash) {
+  editCardCash(cash): void {
     this.editCash.emit(cash);
   }
 }

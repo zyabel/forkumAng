@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import { DataServiceService } from '../../services';
+import { News, Slide } from '../../interfaces/news.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +10,9 @@ import { DataServiceService } from '../../services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
-  newsArray: {}[];
+  sliderArray: Slide[];
+
+  newsArray: News[];
 
   isLoading: boolean = true;
 
@@ -21,6 +24,15 @@ export class HomePageComponent implements OnInit {
       .subscribe(data => {
         if (data) {
           this.newsArray = data;
+          this.isLoading = false;
+          this.cd.detectChanges();
+        }
+      });
+
+    this.dataService.getSliderData()
+      .subscribe(data => {
+        if (data) {
+          this.sliderArray = data;
           this.isLoading = false;
           this.cd.detectChanges();
         }

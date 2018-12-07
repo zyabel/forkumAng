@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { News, Message, PersonalInfo, ProductCard } from '../interfaces/news.interface';
+import { News, Message, PersonalInfo, ProductCard, Slide } from '../interfaces/news.interface';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { DocumentReference } from '@firebase/firestore-types';
 })
 export class DataServiceService {
 
+  sliderCollection: AngularFirestoreCollection<Slide>;
   newsCollection: AngularFirestoreCollection<News>;
   messageCollection: AngularFirestoreCollection<Message>;
   infoCollection: AngularFirestoreCollection<PersonalInfo>;
@@ -19,6 +20,7 @@ export class DataServiceService {
   cashInfoCollection: AngularFirestoreCollection<string>;
 
   constructor(private afs: AngularFirestore) {
+    this.sliderCollection = this.afs.collection('slider');
     this.newsCollection = this.afs.collection('news');
     this.messageCollection = this.afs.collection('messages');
     this.infoCollection = this.afs.collection('personalInfo');
@@ -26,6 +28,18 @@ export class DataServiceService {
    }
 
   // news methods
+  getSliderData(): Observable<Slide[]> {
+    const dataSlider = this.sliderCollection.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data();
+        data.id = a.payload.doc.id;
+
+        return data;
+      });
+    });
+
+    return dataSlider;
+  }
   getNewsData(): Observable<News[]> {
     const dataNews = this.newsCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
@@ -43,6 +57,10 @@ export class DataServiceService {
     return this.newsCollection.doc(id).valueChanges();
   }
 
+  getSlideById(id: string): Observable<{}> {
+    return this.sliderCollection.doc(id).valueChanges();
+  }
+
   addNews(news: News): Promise<DocumentReference> {
     return this.newsCollection.add(news);
   }
@@ -51,8 +69,16 @@ export class DataServiceService {
     this.newsCollection.doc(news.id).update(news);
   }
 
+  editSlide(slide: Slide): void {
+    this.sliderCollection.doc(slide.id).update(slide);
+  }
+
   deleteNews(id: string): void {
     this.newsCollection.doc(id).delete();
+  }
+
+  deleteSlide(id: string): void {
+    this.sliderCollection.doc(id).delete();
   }
 
   // messages methods

@@ -6,6 +6,8 @@ import { AdminHomePageComponent } from './home-page.component';
 import { HomePageRoutingModule } from './home-page-routins.module';
 import { SpinnerModule } from '../../../shared';
 
+import { TabsModule } from 'ngx-bootstrap';
+
 @NgModule({
   declarations: [
     AdminHomePageComponent
@@ -14,7 +16,8 @@ import { SpinnerModule } from '../../../shared';
     CommonModule,
     HomePageRoutingModule,
     SpinnerModule,
-    FormsModule
+    FormsModule,
+    TabsModule.forRoot()
   ],
   exports: [
     AdminHomePageComponent

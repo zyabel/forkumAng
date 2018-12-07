@@ -1,3 +1,28 @@
+.container-cards {
+	display: flex;
+	justify-content: space-around;
+
+	.card {
+		width: 45%;
+
+		img {
+			width: 100%; 
+		}
+	}
+}
+
+.tab-container {
+	.nav.nav-pills {
+		width: 50%;
+		margin: 10px auto;
+
+		.nav-item {
+			width: 200px;
+			text-align: center;
+		}
+	}
+}
+
 .edit {
 	border: 2px solid transparent;
 	background: linear-gradient(white, white) padding-box,

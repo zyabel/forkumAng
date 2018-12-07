@@ -19,13 +19,13 @@
                     <div class="card-body">
                       <h6>{{content.information.cardTitle}}</h6>
                       <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
-                      <button type="button" class="btn btn-primary" (click)="openModal(template)">More</button>
+                      <button type="button" class="btn btn-primary" (click)="openModal(template)">Подробнее</button>
                     </div>
           
                     <!-- Modal window -->
                     <ng-template #template>
                       <div class="modal-header">
-                        <h4 class="modal-title pull-left">Modal</h4>
+                        <h4 class="modal-title pull-left">{{content.information.cardTitle}}</h4>
                         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -34,7 +34,7 @@
                         <div class="panel-modal">
                           <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
                           <div class="info">
-                            <h5 class="card-title">{{content.information.cardTitle}}</h5>
+                            <h5 class="card-title"></h5>
                             <p class="card-text">Цена: {{content.information.price}}</p>
                             <p>{{content.modal.description}}</p>
                           </div>
@@ -42,13 +42,13 @@
                         <!-- Tabs block -->
                         <div>
                           <tabset>
-                            <tab heading="Description" id="tab1">
+                            <tab heading="Описание" id="tab1">
                               <p *ngFor="let item of content.information.shortDesc">{{item}}</p>
                             </tab>
-                            <tab heading="Characteristics">
+                            <tab heading="Характеристики">
                               <app-modal-table [tableData]="content.tableData"></app-modal-table>
                             </tab>
-                            <tab heading="Carry&Cash">
+                            <tab heading="Оплата и доставка">
                               <app-cash></app-cash>
                             </tab>
                           </tabset>
@@ -79,17 +79,17 @@
     
               <!-- Card content -->
               <div class="card" *ngFor="let content of returnedArray">
-                  <img class="card-img-top" src="assets/images/1303.jpg" alt="Card image cap" width="200px" height="200px" />
+                  <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
                   <div class="card-body">
                     <h6>{{content.information.cardTitle}}</h6>
                     <p class="card-text"> {{content.information.price | currency:'Цена: '}}</p>
-                    <button type="button" class="btn btn-primary" (click)="openModal(template)">More</button>
+                    <button type="button" class="btn btn-primary" (click)="openModal(template)">Подробнее</button>
                   </div>
         
                   <!-- Modal window -->
                   <ng-template #template>
                     <div class="modal-header">
-                      <h4 class="modal-title pull-left">Modal</h4>
+                      <h4 class="modal-title pull-left">{{content.information.cardTitle}}</h4>
                       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -98,7 +98,7 @@
                       <div class="panel-modal">
                         <img class="card-img-top" src={{content.information.imgPath}} alt="Card image cap" width="200px" height="200px" />
                         <div class="info">
-                          <h5 class="card-title">{{content.information.cardTitle}}</h5>
+                          <h5 class="card-title"></h5>
                           <p class="card-text">Цена: {{content.information.price}}</p>
                           <p>{{content.modal.description}}</p>
                         </div>
@@ -106,13 +106,13 @@
                       <!-- Tabs block -->
                       <div>
                         <tabset>
-                          <tab heading="Description" id="tab1">
+                          <tab heading="Описание" id="tab1">
                             <p *ngFor="let item of content.information.shortDesc">{{item}}</p>
                           </tab>
-                          <tab heading="Characteristics">
+                          <tab heading="Характеристки">
                             <app-modal-table [tableData]="content.tableData"></app-modal-table>
                           </tab>
-                          <tab heading="Carry&Cash">
+                          <tab heading="Оплата и доставка">
                             <app-cash></app-cash>
                           </tab>
                         </tabset>
