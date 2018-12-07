@@ -92,7 +92,7 @@ export class ServicesPageComponent implements OnInit {
     },
     {
       serviceName: 'Труба дренажная за 1м.п. 25-32Ф',
-      price:' 65 грн.'
+      price: '65 грн.'
     },
     {
       serviceName: 'Гибкий дренаж',
@@ -107,7 +107,7 @@ export class ServicesPageComponent implements OnInit {
       price: '40 грн.'
     },
     {
-      serviceName:' Вилка электропитания',
+      serviceName: 'Вилка электропитания',
       price: '50 грн.'
     },
     {
@@ -222,7 +222,7 @@ export class ServicesPageComponent implements OnInit {
       serviceName: 'Доставка оборудования',
       price: 'от 50 грн.'
     }
-  ]
+  ];
 
   innerText = `<h2 style="text-align: left;">В стандартный монтаж входят:</h2>
               <div class="left_dol">Работы:</div>
@@ -267,6 +267,7 @@ export class ServicesPageComponent implements OnInit {
               официальная гарантия, срок которой вы можете посмотреть в графе«Гарантия»
               на карточке товара либо уточнить у менеджера. На все виды монтажных работ предоставляется гарантия,
               по сроку равная гарантии на монтируемое оборудование!!!</p>`;
+
   constructor() { }
 
   ngOnInit() {

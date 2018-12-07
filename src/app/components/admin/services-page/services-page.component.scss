@@ -1,0 +1,46 @@
+.container-services {
+  .tabset-block.inner-pills{
+    .nav {
+      margin-top: 20px;
+    }
+    
+    .nav-link.active {
+      border-top: 2px solid #f67402;
+      color: #071322;
+    }
+
+    .tab-content {
+      width: 100%;
+    }
+  }
+
+  .form-work {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+
+    .form-group {
+      width: 500px;
+      margin-top: 15px;
+
+      label {
+        font-size: 14px;
+      }
+    }
+
+    .submit {
+      position: fixed;
+      bottom: 100px;
+      right: 100px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.container {
+  padding: 0;
+}
