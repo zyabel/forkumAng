@@ -7,7 +7,7 @@
             <form class="form-work">
               <div class="form-group" *ngFor="let row of priceArrow; let i = index; trackBy:indexTracker">
                 <label for="">{{row.serviceName}}</label>
-                <input type="text" name="price[i]" class="form-control" [(ngModel)]="row.price">
+                <input type="text" name="price{{i}}" class="form-control" [(ngModel)]="row.price">
               </div>
               <button class="btn btn-success submit" (click)="submitForm(priceArrow)">OK</button>
             </form>
