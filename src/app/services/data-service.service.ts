@@ -17,7 +17,7 @@ export class DataServiceService {
   messageCollection: AngularFirestoreCollection<Message>;
   infoCollection: AngularFirestoreCollection<PersonalInfo>;
   productsCollection: AngularFirestoreCollection<ProductCard>;
-  cashInfoCollection: AngularFirestoreCollection<string>;
+  cashInfoCollection: AngularFirestoreCollection<any>;
 
   constructor(private afs: AngularFirestore) {
     this.sliderCollection = this.afs.collection('slider');
@@ -135,7 +135,7 @@ export class DataServiceService {
     return products;
   }
 
-  getCashInfo() {
+  getCashInfo(): Observable<any> {
     const cashInfo = this.cashInfoCollection.snapshotChanges().map(info => {
       return info.map(a => {
         const data = a.payload.doc.data();

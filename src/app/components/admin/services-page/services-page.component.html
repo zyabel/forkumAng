@@ -6,8 +6,12 @@
           <div class="container">
             <form class="form-work">
               <div class="form-group" *ngFor="let row of priceArrow; let i = index; trackBy:indexTracker">
-                <label for="">{{row.serviceName}}</label>
-                <input type="text" name="price[i]" class="form-control" [(ngModel)]="row.price">
+                <label for="price{{i}}">{{row.serviceName}}</label>
+                <input type="text" name="serviceName{{i}}" class="form-control" [(ngModel)]="row.serviceName">
+                <input type="text" name="price{{i}}" class="form-control" [(ngModel)]="row.price">
+                <button type="button" class="close" aria-label="Close" (click)="deletePriceItem(i)" data-toggle="tooltip" data-placement="top" title="Удалить услугу">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <button class="btn btn-success submit" (click)="submitForm(priceArrow)">OK</button>
             </form>
@@ -19,7 +23,12 @@
         <tab heading="Ремонт" >
             <div class="container">
                 <h3>РЕМОНТ КОНДИЦИОНЕРОВ</h3>
-                Рано или поздно кондиционер будет требовать сервисное обслуживание. Ремонт кондиционеров может потребоваться тогда, когда произойдет поломка компрессора или перегрев системной платы. Подстраховать технику от поломок можно исключительно правильным пользованием сплит-системой, а также профилактическими работами, проводимые специалистами.
+                <p>
+                  Рано или поздно кондиционер будет требовать сервисное обслуживание. 
+                  Ремонт кондиционеров может потребоваться тогда, когда произойдет поломка компрессора или
+                  перегрев системной платы. Подстраховать технику от поломок можно исключительно правильным 
+                  пользованием сплит-системой, а также профилактическими работами, проводимые специалистами.
+                </p>
                 
                 По приезду ремонтник произведет визуальный осмотр техники. Если это будет необходимо – то возможно потребуются и демонтаж внешнего и внутреннего блока, а также проведение диагностики. После этого всего проводится устранение всех выявленных неисправностей с применением специального оборудования.
                 
