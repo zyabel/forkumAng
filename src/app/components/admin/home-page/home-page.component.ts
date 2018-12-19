@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEnca
 
 import { DataServiceService } from '../../../services';
 import { News, Slide } from '../../../interfaces/news.interface';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-home-page',
