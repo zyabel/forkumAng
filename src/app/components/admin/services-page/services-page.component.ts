@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-services-page',
   templateUrl: './services-page.component.html',
-  styleUrls: ['./services-page.component.scss']
+  styleUrls: ['./services-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class ServicesPageComponent implements OnInit {
-
   priceArrow = [
     {
       serviceName: 'Профессиональная установка настенной сплит системы 07-09 (до 25 м кв, магистраль 3м)',
@@ -229,5 +230,9 @@ export class ServicesPageComponent implements OnInit {
   
   submitForm(row) {
     console.log(row);
+  }
+
+  deletePriceItem(id): void {
+    console.log(id);
   }
 }

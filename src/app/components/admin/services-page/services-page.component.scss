@@ -1,10 +1,12 @@
 .container-services {
-  .tabset-block.inner-pills{
+  padding: 28px 0 0 0;
+
+  .tabset-block.inner-pills {
     .nav {
       margin-top: 20px;
     }
     
-    .nav-link.active {
+    .nav-tabs .nav-link.active {
       border-top: 2px solid #f67402;
       color: #071322;
     }
@@ -27,6 +29,15 @@
 
       label {
         font-size: 14px;
+        font-weight: bold;
+      }
+
+      .close {
+        margin: -34px 10px 0 0;
+
+        &:hover {
+          color: red;
+        }
       }
     }
 
