@@ -18,6 +18,7 @@ export class DataServiceService {
   infoCollection: AngularFirestoreCollection<PersonalInfo>;
   productsCollection: AngularFirestoreCollection<ProductCard>;
   cashInfoCollection: AngularFirestoreCollection<any>;
+  servicesCollection: AngularFirestoreCollection<any>;
 
   constructor(private afs: AngularFirestore) {
     this.sliderCollection = this.afs.collection('slider');
@@ -25,7 +26,8 @@ export class DataServiceService {
     this.messageCollection = this.afs.collection('messages');
     this.infoCollection = this.afs.collection('personalInfo');
     this.cashInfoCollection = this.afs.collection('cashCarry');
-   }
+    this.servicesCollection = this.afs.collection('servicesCollection');
+  }
 
   // news methods
   getSliderData(): Observable<Slide[]> {
@@ -40,6 +42,7 @@ export class DataServiceService {
 
     return dataSlider;
   }
+
   getNewsData(): Observable<News[]> {
     const dataNews = this.newsCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
@@ -156,5 +159,19 @@ export class DataServiceService {
   editCard(id: string, collection: string, updateData, documentField): void {
     this.productsCollection = this.afs.collection(collection);
     this.productsCollection.doc(id).update({[documentField]: updateData});
+  }
+
+  // services methods
+  getServicesPriceData(): Observable<any> {
+    const dataPrice = this.servicesCollection.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data();
+        data.id = a.payload.doc.id;
+
+        return data;
+      });
+    });
+
+    return dataPrice;
   }
 }
