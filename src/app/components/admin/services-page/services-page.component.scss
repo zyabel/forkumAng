@@ -17,14 +17,14 @@
   }
 
   .form-work {
-    display: flex;
+   /* display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
     position: relative;
 
     .form-group {
-      width: 500px;
+      width: 100%;
       margin-top: 15px;
 
       label {
@@ -32,8 +32,16 @@
         font-weight: bold;
       }
 
+      .form-control {
+        margin-bottom: 5px;
+      }
+
+      .form-control:nth-child(3) {
+        width: 30%;
+      }
+
       .close {
-        margin: -34px 10px 0 0;
+        margin: -119px 10px 0 0;
 
         &:hover {
           color: red;
